@@ -474,7 +474,9 @@ public class QueryService extends BasicService {
             final boolean isSelect = QueryUtil.isSelectStatement(sqlRequest.getSql());
             if (isSelect) {
                 sqlResponse = query(sqlRequest, queryContext.getQueryId());
-            } else if (kylinConfig.isPushDownEnabled() && kylinConfig.isPushDownUpdateEnabled()) {
+                logger.info("sql response: ", sqlResponse);
+            } else if (sqlRequest.isPushDownEnabled() && kylinConfig.isPushDownEnabled() && kylinConfig.isPushDownUpdateEnabled()) {
+                logger.info("push down: ", sqlRequest);
                 sqlResponse = update(sqlRequest);
             } else {
                 logger.debug("Directly return exception as the sql is unsupported, and query pushdown is disabled");

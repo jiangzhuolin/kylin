@@ -37,6 +37,15 @@ public class SQLRequest implements Serializable {
     private Integer offset = 0;
     private Integer limit = 0;
     private boolean acceptPartial = false;
+    private boolean pushDownEnabled = true;
+
+    public boolean isPushDownEnabled() {
+        return pushDownEnabled;
+    }
+
+    public void setPushDownEnabled(boolean pushDownEnabled) {
+        pushDownEnabled = pushDownEnabled;
+    }
 
     private Map<String, String> backdoorToggles;
 
